@@ -1,0 +1,28 @@
+runtime: python39
+env: standard
+
+instance_class: F1
+
+automatic_scaling:
+  min_instances: 0
+  max_instances: 2
+  min_idle_instances: 0
+  max_idle_instances: 1
+  min_pending_latency: 30ms
+  max_pending_latency: automatic
+  max_concurrent_requests: 50
+
+env_variables:
+  # 이 값들은 Secret Manager나 GitHub Secrets에서 관리
+  DART_API_KEY: "YOUR_DART_API_KEY"
+  BOT_TOKEN: "YOUR_BOT_TOKEN"
+  CHAT_ID: "YOUR_CHAT_ID"
+
+handlers:
+- url: /.*
+  script: auto
+  secure: always
+
+# 인바운드 서비스 설정
+inbound_services:
+- warmup
