@@ -1,0 +1,9 @@
+cron:
+- description: "Check DART disclosures every 30 minutes during business hours"
+  url: /cron/check-disclosures
+  schedule: every 30 minutes from 08:00 to 18:00
+  timezone: Asia/Seoul
+  retry_parameters:
+    min_backoff_seconds: 10
+    max_backoff_seconds: 300
+    max_doublings: 3
